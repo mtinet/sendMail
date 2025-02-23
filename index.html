@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Contact Form</title>
+</head>
+<body>
+
+    <h2>Contact Form</h2>
+    <p>Enter your details below and click send.</p>
+
+    <form id="contact-form">
+        <label>Name:</label>
+        <input type="text" name="name" id="name" required><br><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" id="email" required><br><br>
+
+        <label>Message:</label>
+        <textarea name="message" id="message" required></textarea><br><br>
+
+        <button type="submit" id="submit-btn">Send Message</button>
+        <p id="loading-message" style="display: none;">Sending...</p>
+    </form>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("contact-form");
+        const submitButton = document.getElementById("submit-btn");
+        const loadingMessage = document.getElementById("loading-message");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            submitButton.disabled = true;
+            loadingMessage.style.display = "block";
+
+            const formData = new FormData(this);
+
+            fetch("https://script.google.com/macros/s/AKfycbxEKBajtt71D09Hms61yKAA__s7YXvdUJ-pLOMBu1sS3_u6wl0eVUfSsX8Sg1kLIK34Ew/exec", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert("Message sent successfully!");
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Failed to send message.");
+            })
+            .finally(() => {
+                submitButton.disabled = false;
+                loadingMessage.style.display = "none";
+            });
+        });
+    });
+    </script>
+
+</body>
+</html>
