@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 500px;
+            margin-top: 50px;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-control {
+            border-radius: 5px;
+        }
+        .btn-primary {
+            width: 100%;
+            font-size: 18px;
+        }
+        .btn-primary:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+        #loading-message {
+            display: none;
+            font-weight: bold;
+            color: #007bff;
+            text-align: center;
+            animation: fadeInOut 1s infinite alternate;
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="text-center mb-4">📩 Contact Us</h2>
+    
+    <form id="contact-form">
+        <div class="mb-3">
+            <input type="text" name="name" id="name" class="form-control" placeholder="Your Name" required>
+        </div>
+        <div class="mb-3">
+            <input type="email" name="email" id="email" class="form-control" placeholder="Your Email" required>
+        </div>
+        <div class="mb-3">
+            <textarea name="message" id="message" class="form-control" placeholder="Your Message..." required></textarea>
+        </div>
+        <button type="submit" id="submit-btn" class="btn btn-primary">📩 Send Message</button>
+        <p id="loading-message" class="mt-3">📨 Sending your message...</p>
+    </form>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contact-form");
+    const submitButton = document.getElementById("submit-btn");
+    const loadingMessage = document.getElementById("loading-message");
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        // ✅ 버튼 비활성화 + 로딩 메시지 표시
+        submitButton.disabled = true;
+        loadingMessage.style.display = "block";
+
+        const formData = new FormData(this);
+
+        fetch("https://script.google.com/macros/s/AKfycbxEKBajtt71D09Hms61yKAA__s7YXvdUJ-pLOMBu1sS3_u6wl0eVUfSsX8Sg1kLIK34Ew/exec", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert("✅ Your message has been sent successfully!");
+            window.location.reload();
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("❌ Failed to send message. Please try again.");
+        })
+        .finally(() => {
+            // ✅ 버튼 다시 활성화 + 로딩 메시지 숨김
+            submitButton.disabled = false;
+            loadingMessage.style.display = "none";
+        });
+    });
+});
+</script>
+
+</body>
+</html>
