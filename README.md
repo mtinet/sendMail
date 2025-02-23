@@ -19,15 +19,15 @@ Google Apps Script가 Gmail을 통해 이메일을 전송
 ### 📌 2. 사전 준비
 이 프로젝트를 사용하려면 Google Apps Script를 설정해야 합니다.
 
-✅ Google Apps Script 설정 방법
-Google Apps Script에 접속
-새 프로젝트 생성
-아래 코드를 붙여넣기
-"배포" → "새 배포" 클릭
-"유형 선택"에서 "웹 앱" 선택
-"앱 실행 권한"을 **"모든 사용자"**로 변경
-배포 후 생성된 웹 앱 URL을 복사
-HTML 파일의 fetch() 부분에 복사한 URL을 적용
+✅ Google Apps Script 설정 방법  
+Google Apps Script에 접속  
+새 프로젝트 생성  
+아래 코드를 붙여넣기  
+"배포" → "새 배포" 클릭  
+"유형 선택"에서 "웹 앱" 선택  
+"앱 실행 권한"을 **"모든 사용자"**로 변경  
+배포 후 생성된 웹 앱 URL을 복사  
+HTML 파일의 fetch() 부분에 복사한 URL을 적용  
 
 ### 📌 3. Google Apps Script 코드 (Code.gs)
 아래 코드를 Google Apps Script 프로젝트에 추가하세요.
@@ -51,10 +51,10 @@ function doPost(e) {
 ```
 
 📌 설명
-✅ doPost(e) 함수는 웹페이지에서 보낸 데이터를 받아서 처리
-✅ MailApp.sendEmail()을 사용하여 Gmail을 통해 이메일 전송
-✅ 성공 시 {status: "success"} 응답 반환
-✅ 오류 발생 시 {status: "error"} 응답 반환
+✅ doPost(e) 함수는 웹페이지에서 보낸 데이터를 받아서 처리  
+✅ MailApp.sendEmail()을 사용하여 Gmail을 통해 이메일 전송  
+✅ 성공 시 {status: "success"} 응답 반환  
+✅ 오류 발생 시 {status: "error"} 응답 반환  
 
 ### 📌 4. 기능만 있는 기본 웹페이지 (simple.html)
 필수 기능만 유지한 최소한의 코드입니다.
