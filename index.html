@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Contact Form</title>
+    <title>간단한 연락처 폼</title>
 </head>
 <body>
 
-    <h2>Contact Form</h2>
-    <p>Enter your details below and click send.</p>
+    <h2>📩 연락하기</h2>
+    <p>아래 정보를 입력한 후 "보내기" 버튼을 클릭하세요.</p>
 
     <form id="contact-form">
-        <label>Name:</label>
+        <label>이름:</label>
         <input type="text" name="name" id="name" required><br><br>
 
-        <label>Email:</label>
+        <label>이메일:</label>
         <input type="email" name="email" id="email" required><br><br>
 
-        <label>Message:</label>
+        <label>메시지:</label>
         <textarea name="message" id="message" required></textarea><br><br>
 
-        <button type="submit" id="submit-btn">Send Message</button>
-        <p id="loading-message" style="display: none;">Sending...</p>
+        <button type="submit" id="submit-btn">📨 메시지 보내기</button>
+        <p id="loading-message" style="display: none;">📨 메시지를 보내는 중...</p>
     </form>
 
     <script>
@@ -31,10 +31,10 @@
         const loadingMessage = document.getElementById("loading-message");
 
         form.addEventListener("submit", function (event) {
-            event.preventDefault();
+            event.preventDefault(); // 기본 폼 제출 동작 방지
 
-            submitButton.disabled = true;
-            loadingMessage.style.display = "block";
+            submitButton.disabled = true; // 버튼 비활성화
+            loadingMessage.style.display = "block"; // 로딩 메시지 표시
 
             const formData = new FormData(this);
 
@@ -44,16 +44,16 @@
             })
             .then(response => response.text())
             .then(data => {
-                alert("Message sent successfully!");
-                window.location.reload();
+                alert("✅ 메시지가 성공적으로 전송되었습니다!");
+                window.location.reload(); // 페이지 새로고침
             })
             .catch(error => {
                 console.error("Error:", error);
-                alert("Failed to send message.");
+                alert("❌ 메시지 전송에 실패했습니다. 다시 시도해주세요.");
             })
             .finally(() => {
-                submitButton.disabled = false;
-                loadingMessage.style.display = "none";
+                submitButton.disabled = false; // 버튼 다시 활성화
+                loadingMessage.style.display = "none"; // 로딩 메시지 숨김
             });
         });
     });
