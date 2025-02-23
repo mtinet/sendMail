@@ -33,10 +33,14 @@ Google Apps Script가 Gmail을 통해 이메일을 전송
 아래 코드를 Google Apps Script 프로젝트에 추가하세요.
 
 ```javascript
+function doGet() {
+  return HtmlService.createHtmlOutput("Google Apps Script is working!");
+}
+
 function doPost(e) {
     try {
         MailApp.sendEmail({
-            to: "your-email@example.com", // ✅ 이메일 받을 주소 변경
+            to: "mtinet79@gmail.com",
             subject: "새로운 문의가 도착했습니다!",
             body: "이름: " + e.parameter.name + "\n이메일: " + e.parameter.email + "\n메시지: " + e.parameter.message
         });
