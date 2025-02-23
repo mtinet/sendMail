@@ -66,6 +66,7 @@ function doPost(e) {
 ✅ 빠르게 테스트할 수 있는 가벼운 버전  
 
 ```html
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -99,29 +100,29 @@ function doPost(e) {
         const loadingMessage = document.getElementById("loading-message");
 
         form.addEventListener("submit", function (event) {
-            event.preventDefault();
+            event.preventDefault(); // 기본 폼 제출 동작 방지
 
-            submitButton.disabled = true;
-            loadingMessage.style.display = "block";
+            submitButton.disabled = true; // 버튼 비활성화
+            loadingMessage.style.display = "block"; // 로딩 메시지 표시
 
             const formData = new FormData(this);
 
-            fetch("YOUR_GOOGLE_APPS_SCRIPT_URL", {
+            fetch("프로젝트를 만드는 사람의 구글 계정을 통해 만든 앱스크립트 배포 주소를 붙여넣으세요.", {
                 method: "POST",
                 body: formData
             })
             .then(response => response.text())
             .then(data => {
                 alert("✅ 메시지가 성공적으로 전송되었습니다!");
-                window.location.reload();
+                window.location.reload(); // 페이지 새로고침
             })
             .catch(error => {
                 console.error("Error:", error);
                 alert("❌ 메시지 전송에 실패했습니다. 다시 시도해주세요.");
             })
             .finally(() => {
-                submitButton.disabled = false;
-                loadingMessage.style.display = "none";
+                submitButton.disabled = false; // 버튼 다시 활성화
+                loadingMessage.style.display = "none"; // 로딩 메시지 숨김
             });
         });
     });
@@ -129,6 +130,7 @@ function doPost(e) {
 
 </body>
 </html>
+
 ```
 
 ### 📌 5. 예쁘게 꾸민 웹페이지 (index.html)
